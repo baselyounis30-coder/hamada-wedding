@@ -4,6 +4,7 @@ import { Details } from "@/components/Details";
 import { FallingRoses } from "@/components/FallingRoses";
 import { Hero } from "@/components/Hero";
 import { Providers } from "@/components/Providers";
+import { ScrollHint } from "@/components/ScrollHint";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Closing />
       </main>
       <FallingRoses front />
+      <ScrollHint />
     </Providers>
   );
 }

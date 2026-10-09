@@ -125,23 +125,16 @@ export function Hero() {
           <Letters text={WEDDING.dateLabel} delay={4.1} step={0.05} />
         </p>
 
-        <motion.p className={styles.venue} {...fadeUp(4.9)}>
+        <motion.p className={styles.time} {...fadeUp(4.7)}>
+          {WEDDING.timeLabel}
+        </motion.p>
+
+        <motion.p className={styles.venue} {...fadeUp(5)}>
           {WEDDING.hall}
           <br />
           {WEDDING.venue}
         </motion.p>
       </motion.div>
-
-      <motion.a
-        href="#countdown"
-        className={styles.scrollCue}
-        aria-label="Scroll to the countdown"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 5.4 }}
-      >
-        <span className={styles.scrollLine} />
-      </motion.a>
     </section>
   );
 }

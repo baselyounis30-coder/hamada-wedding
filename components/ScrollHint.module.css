@@ -1,0 +1,161 @@
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: max(1.1rem, env(safe-area-inset-bottom));
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.hint {
+  display: block;
+  border-radius: 999px;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.hint:focus-visible {
+  outline: 2px solid var(--rose-deep);
+  outline-offset: 4px;
+}
+
+.bob {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 1.15rem 0.5rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(253, 236, 233, 0.82));
+  box-shadow:
+    0 18px 36px -14px rgba(122, 47, 72, 0.55),
+    0 0 0 1px rgba(194, 106, 128, 0.25);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  animation: bob 2s ease-in-out infinite;
+}
+
+.pin {
+  position: relative;
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  color: #fff8f6;
+  background: linear-gradient(135deg, var(--rose), var(--rose-deep));
+}
+
+/* A ring that keeps radiating from the pin to catch the eye. */
+.pin::before,
+.pin::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--rose);
+  animation: ping 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.pin::after {
+  animation-delay: 1s;
+}
+
+.pin svg {
+  position: relative;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.lead {
+  font-family: var(--font-caps), serif;
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+.what {
+  font-family: var(--font-serif), serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+.chevrons {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  gap: 0.05rem;
+  color: var(--rose-deep);
+}
+
+.chevrons svg {
+  display: block;
+  width: 1rem;
+  height: 0.62rem;
+  animation: cascade 1.4s ease-in-out infinite;
+}
+
+.chevrons svg:last-child {
+  animation-delay: 0.22s;
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes ping {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@keyframes cascade {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: translateY(-2px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bob,
+  .pin::before,
+  .pin::after,
+  .chevrons svg {
+    animation: none;
+  }
+
+  .pin::before,
+  .pin::after {
+    display: none;
+  }
+}

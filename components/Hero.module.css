@@ -3,7 +3,8 @@
   min-height: 100svh;
   display: grid;
   place-items: center;
-  padding: clamp(3.5rem, 8vh, 6rem) 1.5rem clamp(5.5rem, 11vh, 7.5rem);
+  /* The bottom padding keeps the text clear of the floating scroll hint. */
+  padding: clamp(2.75rem, 6.5vh, 6rem) 1.5rem clamp(5.5rem, 11vh, 7.5rem);
   overflow: hidden;
 }
 
@@ -113,14 +114,14 @@
   font-family: var(--font-caps), serif;
   font-weight: 700;
   font-size: clamp(0.78rem, min(2.1vw, 2.2vh), 1.2rem);
-  line-height: 1.9;
+  line-height: 1.75;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--ink);
 }
 
 .names {
-  margin: clamp(1rem, 3.5vh, 2.5rem) 0 clamp(0.75rem, 2.5vh, 2rem);
+  margin: clamp(0.9rem, 3vh, 2.5rem) 0 clamp(0.6rem, 2vh, 2rem);
   font-family: var(--font-script), cursive;
   font-weight: 400;
   line-height: 1;
@@ -129,26 +130,26 @@
 
 .name {
   display: block;
-  font-size: clamp(4rem, min(15vw, 12.5vh), 9.5rem);
+  font-size: clamp(4rem, min(15vw, 12vh), 9.5rem);
 }
 
 .amp {
   display: block;
   margin: 0.12em 0 0.2em;
-  font-size: clamp(2.6rem, min(9vw, 7vh), 5.5rem);
+  font-size: clamp(2.5rem, min(9vw, 6.2vh), 5.5rem);
 }
 
 .tagline {
   max-width: 13em;
   margin-inline: auto;
   font-family: var(--font-hand), cursive;
-  font-size: clamp(1.4rem, min(4.4vw, 3.6vh), 2.4rem);
-  line-height: 1.5;
+  font-size: clamp(1.3rem, min(4.4vw, 3.3vh), 2.4rem);
+  line-height: 1.4;
   color: var(--ink);
 }
 
 .date {
-  margin-top: 1.25rem;
+  margin-top: clamp(0.6rem, 2vh, 1.25rem);
   font-family: var(--font-caps), serif;
   font-weight: 700;
   font-size: clamp(1.05rem, min(3.4vw, 3.1vh), 1.9rem);
@@ -156,50 +157,36 @@
   color: var(--ink);
 }
 
+.time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9em;
+  margin-top: 0.6rem;
+  padding-left: 0.26em;
+  font-family: var(--font-caps), serif;
+  font-size: clamp(0.85rem, min(2.4vw, 2.1vh), 1.2rem);
+  letter-spacing: 0.26em;
+  color: var(--ink);
+}
+
+.time::before,
+.time::after {
+  content: "";
+  width: 2.2em;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+
 .venue {
-  margin-top: clamp(1.25rem, 4vh, 3rem);
+  margin-top: clamp(0.9rem, 2.5vh, 2.5rem);
   font-family: var(--font-caps), serif;
   font-size: clamp(0.75rem, min(2vw, 1.8vh), 1.05rem);
   line-height: 1.9;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--plum);
-}
-
-.scrollCue {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  width: 2.5rem;
-  height: 3.5rem;
-  margin-left: -1.25rem;
-  display: grid;
-  place-items: center;
-}
-
-.scrollLine {
-  position: relative;
-  width: 1px;
-  height: 100%;
-  overflow: hidden;
-  background: rgba(138, 86, 97, 0.25);
-}
-
-.scrollLine::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--rose-deep);
-  animation: drip 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-@keyframes drip {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(100%);
-  }
 }
 
 @media (max-width: 640px) {
@@ -209,8 +196,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sway,
-  .scrollLine::after {
+  .sway {
     animation: none;
   }
 }

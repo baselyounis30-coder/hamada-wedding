@@ -75,7 +75,11 @@ export function Countdown() {
         kicker={arrived ? "The day is here" : "Until we say I do"}
         title={arrived ? "Our forever has begun" : "Counting down to forever"}
       />
-      <div className={styles.countGrid} role="timer" aria-label={`Time until ${WEDDING.dateLabel}`}>
+      <div
+        className={styles.countGrid}
+        role="timer"
+        aria-label={`Time until ${WEDDING.dateLabel}, ${WEDDING.timeLabel}`}
+      >
         {units.map((unit, i) => (
           <Unit key={unit.label} index={i} {...unit} />
         ))}

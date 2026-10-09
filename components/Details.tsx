@@ -72,7 +72,7 @@ export function Details() {
           index={0}
           label="The Date"
           primary={WEDDING.weekday}
-          secondary={WEDDING.dateLabel}
+          secondary={`${WEDDING.dateLabel} · ${WEDDING.timeLabel}`}
           icon={
             <svg {...iconProps}>
               <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />

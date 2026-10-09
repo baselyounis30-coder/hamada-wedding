@@ -34,7 +34,7 @@ const serif = Cormorant_Garamond({
 export const metadata: Metadata = {
   title: "Mohamed & Nehal · November 6, 2026",
   description:
-    "Please reserve the date for our wedding. November 6, 2026 at Palace Hall, Jewel Sports City Hotel.",
+    "Please reserve the date for our wedding. November 6, 2026 at 6:30 PM, Palace Hall, Jewel Sports City Hotel.",
 };
 
 export const viewport: Viewport = {
