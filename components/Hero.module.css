@@ -1,0 +1,216 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(3.5rem, 8vh, 6rem) 1.5rem clamp(5.5rem, 11vh, 7.5rem);
+  overflow: hidden;
+}
+
+/* The charcoal corners of the invitation. */
+.shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 52% 34% at 0% 0%,
+      rgba(42, 35, 37, 0.88) 0%,
+      rgba(42, 35, 37, 0.5) 30%,
+      rgba(42, 35, 37, 0.16) 64%,
+      rgba(42, 35, 37, 0) 100%
+    ),
+    radial-gradient(
+      ellipse 52% 34% at 100% 100%,
+      rgba(42, 35, 37, 0.88) 0%,
+      rgba(42, 35, 37, 0.5) 30%,
+      rgba(42, 35, 37, 0.16) 64%,
+      rgba(42, 35, 37, 0) 100%
+    );
+}
+
+.bouquet {
+  position: absolute;
+  width: clamp(220px, min(40vw, 62vh), 540px);
+  pointer-events: none;
+}
+
+.bouquet svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.topRight {
+  top: 0;
+  right: 0;
+}
+
+.topRight .sway {
+  transform-origin: 100% 0%;
+}
+
+.bottomLeft {
+  bottom: 0;
+  left: 0;
+}
+
+.bottomLeft .sway {
+  /* Inside the flipped wrapper, so this is the bottom-left corner on screen. */
+  transform-origin: 100% 0%;
+  animation-delay: -4s;
+}
+
+.flip {
+  rotate: 180deg;
+}
+
+.sway {
+  animation: sway 9s ease-in-out infinite alternate;
+}
+
+@keyframes sway {
+  from {
+    transform: rotate(-1.4deg);
+  }
+  to {
+    transform: rotate(1.4deg);
+  }
+}
+
+.content {
+  position: relative;
+  max-width: 46rem;
+  text-align: center;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.word {
+  display: inline-block;
+  white-space: nowrap;
+  margin-right: 0.55em;
+}
+
+.word:last-child {
+  margin-right: 0;
+}
+
+.letter {
+  display: inline-block;
+}
+
+.eyebrow {
+  max-width: 21em;
+  margin-inline: auto;
+  font-family: var(--font-caps), serif;
+  font-weight: 700;
+  font-size: clamp(0.78rem, min(2.1vw, 2.2vh), 1.2rem);
+  line-height: 1.9;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.names {
+  margin: clamp(1rem, 3.5vh, 2.5rem) 0 clamp(0.75rem, 2.5vh, 2rem);
+  font-family: var(--font-script), cursive;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--mauve);
+}
+
+.name {
+  display: block;
+  font-size: clamp(4rem, min(15vw, 12.5vh), 9.5rem);
+}
+
+.amp {
+  display: block;
+  margin: 0.12em 0 0.2em;
+  font-size: clamp(2.6rem, min(9vw, 7vh), 5.5rem);
+}
+
+.tagline {
+  max-width: 13em;
+  margin-inline: auto;
+  font-family: var(--font-hand), cursive;
+  font-size: clamp(1.4rem, min(4.4vw, 3.6vh), 2.4rem);
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.date {
+  margin-top: 1.25rem;
+  font-family: var(--font-caps), serif;
+  font-weight: 700;
+  font-size: clamp(1.05rem, min(3.4vw, 3.1vh), 1.9rem);
+  letter-spacing: 0.26em;
+  color: var(--ink);
+}
+
+.venue {
+  margin-top: clamp(1.25rem, 4vh, 3rem);
+  font-family: var(--font-caps), serif;
+  font-size: clamp(0.75rem, min(2vw, 1.8vh), 1.05rem);
+  line-height: 1.9;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--plum);
+}
+
+.scrollCue {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  width: 2.5rem;
+  height: 3.5rem;
+  margin-left: -1.25rem;
+  display: grid;
+  place-items: center;
+}
+
+.scrollLine {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  overflow: hidden;
+  background: rgba(138, 86, 97, 0.25);
+}
+
+.scrollLine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--rose-deep);
+  animation: drip 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes drip {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sway,
+  .scrollLine::after {
+    animation: none;
+  }
+}

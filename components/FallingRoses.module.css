@@ -1,0 +1,105 @@
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  animation: appear 2.4s ease both;
+}
+
+/* A sparse, slightly soft layer that passes in front of the content. */
+.front {
+  z-index: 3;
+  filter: blur(1.2px);
+}
+
+.fall {
+  position: absolute;
+  top: 0;
+  left: var(--x);
+  width: var(--size);
+  height: var(--size);
+  opacity: var(--o);
+  animation: fall var(--dur) linear var(--delay) infinite;
+  will-change: transform;
+}
+
+.sway,
+.spin,
+.flutter {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.sway {
+  animation: sway var(--sway-dur) ease-in-out infinite alternate;
+}
+
+.spin {
+  animation: spin var(--spin-dur) linear infinite var(--spin-dir);
+}
+
+.flutter {
+  animation: flutter var(--spin-dur) linear infinite var(--spin-dir);
+}
+
+.fall svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 6px 8px rgba(122, 47, 72, 0.16));
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fall {
+  from {
+    transform: translate3d(0, -160%, 0);
+  }
+  to {
+    transform: translate3d(0, calc(100vh + 60%), 0);
+  }
+}
+
+@keyframes sway {
+  from {
+    transform: translateX(calc(var(--sway) * -1)) rotate(-10deg);
+  }
+  to {
+    transform: translateX(var(--sway)) rotate(10deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes flutter {
+  to {
+    transform: rotate3d(0.6, 1, 0.35, 360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .fall {
+    width: calc(var(--size) * 0.75);
+    height: calc(var(--size) * 0.75);
+  }
+
+  .fall:nth-child(n + 15) {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .layer {
+    display: none;
+  }
+}

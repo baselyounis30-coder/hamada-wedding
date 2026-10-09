@@ -1,49 +1,118 @@
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Sampled from the invitation. */
+  --cream: #fdf7f4;
+  --blush: #f6d6d2;
+  --peach: #f7d2c3;
+  --rose: #c26a80;
+  --rose-deep: #9a4059;
+  --mauve: #8a5661;
+  --ink: #4a1f2a;
+  --plum: #5f4451;
+  --taupe: #b3a091;
+  --charcoal: #2a2325;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html {
-  height: 100%;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
 }
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: dark) {
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: var(--font-serif), Georgia, serif;
+  color: var(--ink);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--rose);
+  color: #fff;
+}
+
+/* The watercolour wash behind everything. */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(90% 60% at 85% 12%, rgba(255, 255, 255, 0.95), transparent 65%),
+    linear-gradient(165deg, #fbf4f1 0%, #fbe9e4 40%, #f8d9cd 72%, #f5d3cb 100%);
+}
+
+.backdrop::before,
+.backdrop::after {
+  content: "";
+  position: absolute;
+  border-radius: 45% 55% 60% 40%;
+  filter: blur(60px);
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+/* The diagonal peach band that crosses the invitation. */
+.backdrop::before {
+  top: 22%;
+  left: -30%;
+  width: 110%;
+  height: 60%;
+  background: linear-gradient(120deg, rgba(246, 196, 176, 0.85), rgba(248, 214, 204, 0.3));
+  rotate: 24deg;
+}
+
+.backdrop::after {
+  top: 55%;
+  left: 25%;
+  width: 90%;
+  height: 50%;
+  background: linear-gradient(120deg, rgba(240, 190, 196, 0.55), rgba(255, 255, 255, 0));
+  rotate: 24deg;
+  animation-duration: 34s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(-4%, -3%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(5%, 4%, 0) scale(1.12);
+  }
+}
+
+.page {
+  position: relative;
+  z-index: 2;
+}
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  height: 3px;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, var(--blush), var(--rose), var(--rose-deep));
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    color-scheme: dark;
+    scroll-behavior: auto;
+  }
+
+  .backdrop::before,
+  .backdrop::after {
+    animation: none;
   }
 }
